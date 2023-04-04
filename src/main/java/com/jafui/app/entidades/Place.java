@@ -150,7 +150,4 @@ public class Place {
         return null;
     }
 
-    
-
-
 }
