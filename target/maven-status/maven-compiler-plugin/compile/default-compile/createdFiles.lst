@@ -1,4 +1,3 @@
 com\jafui\app\persistencia\UserRepository.class
 com\jafui\app\entidades\User.class
 com\jafui\app\persistencia\DynamoDBConfig.class
-com\jafui\app\BackendUserApplication.class
