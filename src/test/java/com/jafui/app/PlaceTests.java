@@ -62,12 +62,13 @@ public class PlaceTests {
 
     @Test
     public void testCreatePlace() {
-        Place place = new Place("1", "Museu do Amanhã", "Praça Mauá, 1 - Centro, Rio de Janeiro", "Museu interativo de ciências e tecnologia", 4.5f, new ArrayList<>());
+        Place place = new Place("1", "Museu do Amanhã", "Praça Mauá, 1 - Centro, Rio de Janeiro",
+                "Museu interativo de ciências e tecnologia", 4.5f, new ArrayList<>());
         placeRepository.save(place);
 
         Place savedPlace = placeRepository.findByName("Museu do Amanhã");
         assertNotNull(savedPlace);
         assertNotNull(place);
     }
-    
+
 }

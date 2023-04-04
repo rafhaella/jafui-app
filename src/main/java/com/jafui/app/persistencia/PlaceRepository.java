@@ -8,5 +8,5 @@ import com.jafui.app.entidades.Place;
 public interface PlaceRepository extends CrudRepository<Place, String> {
 
     public Place findByName(String name);
-    
+
 }
