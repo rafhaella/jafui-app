@@ -17,25 +17,13 @@ JáFui! é um aplicativo para compartilhar informações locais relevantes, como
 - Amazon DynamoDB
 - JUnit
 
-## Como executar o projeto
 
-Para executar o projeto, siga os seguintes passos:
-
-1. Clone o repositório para sua máquina local;
-2. Configure as credenciais da Amazon Web Services (AWS);
-3. Execute o comando `mvn spring-boot:run` na raiz do projeto para iniciar o servidor.
-
-## Como contribuir
-
-1. Faça um fork deste repositório;
-2. Crie uma nova branch com a sua feature: `git checkout -b my-feature`;
-3. Faça o commit das suas alterações: `git commit -m 'feat: My new feature'`;
-4. Faça o push para a sua branch: `git push origin my-feature`;
-5. Abra um Pull Request.
 
 ## Autores
 
-- Rafhaella Moreno
-- Juscelino Cássio
-- Larissa Antunes
-- Leonardo Sudan
+- [@Rafhaella Moreno](https://www.linkedin.com/in/rafhaella-moreno/)
+- [@Juscelino Cássio](https://www.linkedin.com/in/juscelino-cassio/)
+- [@Larissa Antunes](https://www.linkedin.com/in/larissaacmorais/)
+- [@Leonardo Sudan](https://www.linkedin.com/in/leonardo-sudan-13123321b/)
+
+
