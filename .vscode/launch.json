@@ -2,13 +2,21 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Application",
+            "request": "launch",
+            "mainClass": "com.jafui.app.backend_jafui.Application",
+            "projectName": "backend-user"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-BackendUserApplication<backend-user>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.jafui.app.BackendUserApplication",
             "projectName": "backend-user",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": "-Dspring.config.location=C:\\Users\\darkl.DESKTOP-JERVRR1\\OneDrive\\Documentos\\Projects\\jafui-app"
         }
     ]
 }
