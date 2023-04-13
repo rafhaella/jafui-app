@@ -23,8 +23,8 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.jafui.app.entidades.Place;
-import com.jafui.app.persistencia.PlaceRepository;
+import com.jafui.app.backend_jafui.entidades.Place;
+import com.jafui.app.backend_jafui.persistencia.PlaceRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { PropertyPlaceholderAutoConfiguration.class, PlaceTests.DynamoDBConfig.class })

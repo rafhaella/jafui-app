@@ -1,5 +1,10 @@
-c:\Users\darkl.DESKTOP-JERVRR1\OneDrive\Documentos\Projects\jafui-app\src\main\java\com\jafui\app\persistencia\DynamoDBConfig.java
-c:\Users\darkl.DESKTOP-JERVRR1\OneDrive\Documentos\Projects\jafui-app\src\main\java\com\jafui\app\entidades\Place.java
-c:\Users\darkl.DESKTOP-JERVRR1\OneDrive\Documentos\Projects\jafui-app\src\main\java\com\jafui\app\persistencia\UserRepository.java
-c:\Users\darkl.DESKTOP-JERVRR1\OneDrive\Documentos\Projects\jafui-app\src\main\java\com\jafui\app\entidades\User.java
-c:\Users\darkl.DESKTOP-JERVRR1\OneDrive\Documentos\Projects\jafui-app\src\main\java\com\jafui\app\persistencia\PlaceRepository.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\rest\PlaceController.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\negocio\PlaceService.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\entidades\Place.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\persistencia\DynamoDBConfig.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\rest\UserController.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\persistencia\UserRepository.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\negocio\UserService.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\Application.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\persistencia\PlaceRepository.java
+c:\Users\120246916\jafui-app\src\main\java\com\jafui\app\backend_jafui\entidades\User.java

@@ -1,1 +1,4 @@
+com\jafui\app\PlaceTests$DynamoDBConfig.class
+com\jafui\app\PlaceTests.class
 com\jafui\app\UserTests.class
+com\jafui\app\UserTests$DynamoDBConfig.class
