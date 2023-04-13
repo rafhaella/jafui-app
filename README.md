@@ -16,6 +16,9 @@ JáFui! é um aplicativo para compartilhar informações locais relevantes, como
 - Spring Boot
 - Amazon DynamoDB
 - JUnit
+- Swagger
+- Postman
+- Docker
 
 
 
