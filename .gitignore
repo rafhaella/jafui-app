@@ -20,3 +20,11 @@ buildNumber.properties
 *.log
 logs/
 spring.pid
+
+# VSCode
+.vscode/
+*.code-workspace
+!.vscode/settings.json
+!.vscode/tasks.json
+.vscode/launch.json
+!.vscode/extensions.json
