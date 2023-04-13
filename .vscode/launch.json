@@ -6,8 +6,8 @@
             "name": "Application",
             "request": "launch",
             "mainClass": "com.jafui.app.backend_jafui.Application",
-            "projectName": "backend-user",
-            "vmArgs": "-Dspring.config.location=C:\\Users\\120246916\\projects\\sdm\\"
+            "projectName": "backend-jafui",
+            "vmArgs": "-Dspring.config.location=C:\\Users\\Rafhaella\\projeto-sdm\\"
         }
     ]
 }
