@@ -1,4 +1,4 @@
-package com.jafui.app.backend_jafui;
+package com.jafui.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Import;
 
-import com.jafui.app.backend_jafui.persistencia.DynamoDBConfig;
+import com.jafui.api.persistencia.DynamoDBConfig;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
