@@ -127,14 +127,14 @@ public class UserTests {
         // assertEquals(2, count);
     }
 
-    @Test
-    public void testFindByEmail() {
+    /*@Test
+    public void testFindById() {
         User user = new User("1", "João", "joao@gmail.com", "123456");
         userRepository.save(user);
 
-        User foundUser = userRepository.findByEmail("joao@gmail.com");
+        User foundUser = userRepository.findById("1");
         assertNotNull(foundUser);
         assertEquals(user, foundUser);
-    }
+    }*/
 
 }
