@@ -15,6 +15,7 @@ buildNumber.properties
 .settings/
 *.class
 *.jar
+maven-status/
 
 # Spring Boot
 *.log
@@ -28,3 +29,10 @@ spring.pid
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# IntelliJ
+.idea/
