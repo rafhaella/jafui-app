@@ -9,9 +9,13 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
+@RequestMapping(path = "/places")
 public class PlaceController {
     private final PlaceService placeService;
 
@@ -34,29 +38,6 @@ public class PlaceController {
         throw new Exception("Lugar com codigo " + id + " nao encontrado");
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Place> updatePlace(@PathVariable String id, @RequestBody Place place) {
-        try {
-            if (place.getName() != null && !place.getName().isEmpty()) {
-                placeService.updatePlaceName(id, place.getName());
-            }
-            if (place.getAddress() != null && !place.getAddress().isEmpty()) {
-                placeService.updatePlaceAddress(id, place.getAddress());
-            }
-            if (place.getDescription() != null && !place.getDescription().isEmpty()) {
-                placeService.updatePlaceDescription(id, place.getDescription());
-            }
-            /*if (place.getRating() != null && place.getRating()) {
-                placeService.updatePlaceRating(id, place.getRating());
-            }*/
-
-            Place updatedPlacer = placeService.getPlaceById(id);
-            return ResponseEntity.ok(updatedPlacer);
-        } catch (NotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public ResponseEntity<List<Place>> deletePlace(@PathVariable String id) {
@@ -70,8 +51,8 @@ public class PlaceController {
     }
 
     // Endpoint para criar um novo lugar
-    @PostMapping("/places")
-    public ResponseEntity<Place> createPlace(@RequestParam("photo") MultipartFile photo,
+    @PostMapping("")
+    public ResponseEntity<Place> createPlace(@RequestParam("photo") ArrayList<MultipartFile> photo,
                                              @RequestParam("name") String name,
                                              @RequestParam("address") String address,
                                              @RequestParam("description") String description,
@@ -85,7 +66,7 @@ public class PlaceController {
             placeRequest.setRating(rating);
 
             // Chama o método createPlace da classe PlaceService, que já realiza todas as operações necessárias para criar um lugar no banco de dados e salvar a imagem no S3
-            Place savedPlace = placeService.createPlace(photo, placeRequest);
+            Place savedPlace = placeService.createPlace((ArrayList<MultipartFile>) photo, placeRequest);
 
             // Retorna a resposta com o lugar criado e o status HTTP 201 (CREATED)
             return ResponseEntity.status(HttpStatus.CREATED).body(savedPlace);
@@ -94,6 +75,27 @@ public class PlaceController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Place> updatePlace(@PathVariable String id, @RequestBody Place updatedPlace) {
+        try {
+            // Busca o lugar a ser atualizado pelo id
+            Place placeToUpdate = placeService.getPlaceById(id);
+
+            // Chama o método updatePlace da classe PlaceService, que atualiza o lugar no banco de dados
+            Place updatedPlaceInDB = placeService.updatePlace(placeToUpdate.getId(), updatedPlace);
+
+            // Retorna a resposta com o lugar atualizado e o status HTTP 200 (OK)
+            return ResponseEntity.ok(updatedPlaceInDB);
+        } catch (NoSuchElementException e) {
+            // Retorna o status HTTP 404 (NOT FOUND) caso o lugar não seja encontrado pelo id
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            // Retorna o status HTTP 500 (INTERNAL SERVER ERROR) em caso de erro
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 
 
 
