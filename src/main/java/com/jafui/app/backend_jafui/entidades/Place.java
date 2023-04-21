@@ -3,6 +3,9 @@ package com.jafui.app.backend_jafui.entidades;
 import java.util.List;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
+import com.amazonaws.services.s3.AmazonS3;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 @DynamoDBTable(tableName = "place")
 public class Place {
@@ -25,6 +28,9 @@ public class Place {
         this.description = description;
         this.rating = rating;
         this.photos = photos;
+    }
+
+    public Place(String newPlaceId) {
     }
 
     @DynamoDBHashKey
@@ -150,4 +156,13 @@ public class Place {
         return null;
     }
 
+    @Autowired
+    private AmazonS3 amazonS3;
+
+    @Value("${amazon.s3.bucket-name}")
+    private String bucketName;
+
+    public String getPhotoUrl(String fileName) {
+        return amazonS3.getUrl(bucketName, fileName).toString();
+    }
 }
