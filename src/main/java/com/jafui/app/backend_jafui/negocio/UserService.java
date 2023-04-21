@@ -2,6 +2,7 @@ package com.jafui.app.backend_jafui.negocio;
 
 import java.lang.invoke.MethodHandles;
 
+
 import com.amazonaws.services.kms.model.NotFoundException;
 import com.jafui.app.backend_jafui.persistencia.UserRepository;
 import org.apache.commons.collections4.IteratorUtils;
@@ -18,6 +19,8 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
+    public String notFoundExceptionText = "User not found";
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private final UserRepository userRepo;
@@ -69,21 +72,22 @@ public class UserService {
     }
 
     public void updateUserName(String id, String name) {
-        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException(notFoundExceptionText));
         user.setName(name);
         userRepo.save(user);
     }
 
     public void updateUserEmail(String id, String email) {
-        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException(notFoundExceptionText));
         user.setEmail(email);
         userRepo.save(user);
     }
 
     public void updateUserPassword(String id, String password) {
-        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userRepo.findById(id).orElseThrow(() -> new NotFoundException(notFoundExceptionText));
         user.setPassword(password);
         userRepo.save(user);
     }
+
 
 }
