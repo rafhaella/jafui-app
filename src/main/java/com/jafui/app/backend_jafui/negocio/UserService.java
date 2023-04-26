@@ -1,8 +1,6 @@
 package com.jafui.app.backend_jafui.negocio;
 
 import java.lang.invoke.MethodHandles;
-
-
 import com.amazonaws.services.kms.model.NotFoundException;
 import com.jafui.app.backend_jafui.persistencia.UserRepository;
 import org.apache.commons.collections4.IteratorUtils;
@@ -23,52 +21,42 @@ public class UserService {
     public String notFoundExceptionText = "User not found";
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private final UserRepository userRepo;
+    private  final UserRepository userRepo;
 
     public UserService(UserRepository userRepository) {
         this.userRepo = userRepository;
     }
 
-    public List<User> getUsers(){
-        if(logger.isInfoEnabled()){
+    public List<User> getUsers() {
+        if (logger.isInfoEnabled()) {
             logger.info("Buscando todos os usuarios..");
         }
         Iterable<User> lista = this.userRepo.findAll();
 
-        if(lista == null){
+        if (lista == null) {
             return new ArrayList<User>();
         }
         return IteratorUtils.toList(lista.iterator());
     }
 
-    public User getUserById(String id){
-        if(logger.isInfoEnabled()){
-            logger.info("Buscando usuario com o codigo {}",id);
+    public User getUserById(String id) {
+        Optional<User> optionalUser = userRepo.findById(id);
+        if (logger.isInfoEnabled()) {
+            logger.info("Buscando usuario com o codigo {}", id);
         }
-        Optional<User> retorno = userRepo.findById(id);
-        if(!retorno.isPresent()){
-            throw new RuntimeException("Usuário com o id "+id+" nao encontrado");
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        } else {
+            throw new RuntimeException("Usuário com o id " + id + " nao encontrado");
         }
-        return retorno.get();
     }
 
-    public User saveUser(User user){
-        if(logger.isInfoEnabled()){
-            logger.info("Salvando usuário com os detalhes {}",user.toString());
+    public User createAccount(User user) {
+
+        if (logger.isInfoEnabled()) {
+            logger.info("Salvando usuário com os detalhes {}", user.toString());
         }
         return this.userRepo.save(user);
-    }
-
-    public void deleteUser(String id){
-        if(logger.isInfoEnabled()){
-            logger.info("Excluindo usuario com id {}",id);
-        }
-        this.userRepo.deleteById(id);
-    }
-
-    public boolean isUserExists(User user){
-        Optional<User> retorno = userRepo.findById(user.getId());
-        return retorno.isPresent() ? true:  false;
     }
 
     public void updateUserName(String id, String name) {
@@ -89,5 +77,11 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public void deleteUser(String id) {
+        if (logger.isInfoEnabled()) {
+            logger.info("Excluindo usuario com id {}", id);
+        }
+        this.userRepo.deleteById(id);
+    }
 
 }
