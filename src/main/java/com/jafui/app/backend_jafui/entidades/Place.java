@@ -1,11 +1,8 @@
 package com.jafui.app.backend_jafui.entidades;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.amazonaws.services.s3.AmazonS3;
-import com.jafui.app.backend_jafui.negocio.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 

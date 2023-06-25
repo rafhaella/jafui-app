@@ -3,18 +3,13 @@ package com.jafui.app.backend_jafui.negocio;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
-import com.amazonaws.services.kms.model.NotFoundException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.jafui.app.backend_jafui.entidades.Place;
-import com.jafui.app.backend_jafui.entidades.User;
 import com.jafui.app.backend_jafui.persistencia.PlaceRepository;
 import org.apache.commons.collections4.IteratorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;

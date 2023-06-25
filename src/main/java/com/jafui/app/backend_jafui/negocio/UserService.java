@@ -26,6 +26,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepo = userRepository;
     }
+    
 
     public List<User> getUsers() {
         if (logger.isInfoEnabled()) {
@@ -50,6 +51,16 @@ public class UserService {
             throw new RuntimeException("Usuário com o id " + id + " nao encontrado");
         }
     }
+
+    public User getUserByEmail(String email) {
+        if (logger.isInfoEnabled()) {
+            logger.info("Buscando usuário por e-mail: " + email);
+            return userRepo.findByEmail(email);
+        } else {
+            throw new RuntimeException("Usuário com o email " + email + " nao encontrado");
+        }
+    }
+
 
     public User createAccount(User user) {
 
@@ -82,6 +93,21 @@ public class UserService {
             logger.info("Excluindo usuario com id {}", id);
         }
         this.userRepo.deleteById(id);
+    }
+
+    public User login(String email, String password) {
+        User user = userRepo.findByEmail(email);
+        if (user == null) {
+            throw new RuntimeException("Email não cadastrado");
+        }
+        if (!user.getEmail().equals(email)) {
+            throw new RuntimeException("Email incorreto!");
+        }
+
+        if (!user.getPassword().equals(password)) {
+            throw new RuntimeException("Senha incorreta!");
+        }
+        return user;
     }
 
 }

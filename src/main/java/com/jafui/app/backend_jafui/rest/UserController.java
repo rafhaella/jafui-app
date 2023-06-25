@@ -1,13 +1,17 @@
 package com.jafui.app.backend_jafui.rest;
 
 import com.amazonaws.services.kms.model.NotFoundException;
+import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.jafui.app.backend_jafui.entidades.User;
 import com.jafui.app.backend_jafui.negocio.UserService;
+
 
 
 import java.util.List;
@@ -40,18 +44,33 @@ public class UserController {
             throw new Exception("Usuário com codigo " + id + " nao encontrado");
         }
     }
-//    @GetMapping(value = "{id}")
-//    public User getUserById(@PathVariable String id) throws Exception {
-//        if (!ObjectUtils.isEmpty(id)) {
-//            return userService.getUserById(id);
-//        }
-//        throw new Exception("Usuário com codigo " + id + " nao encontrado");
-//    }
+
+    @GetMapping("/by_email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) throws Exception{
+        Optional<User> user = Optional.ofNullable(userService.getUserByEmail(email));
+
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            throw new Exception("Usuário com email " + email + " nao encontrado");
+        }
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
     public User createUser(@RequestBody @NotNull User user) throws Exception {
         return userService.createAccount(user);
+    }
+
+    @PostMapping(value="login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+
+        User user = userService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        if (user == null) {
+            throw new ValidationException("Invalid login request");
+        }
+
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{id}")
@@ -79,17 +98,5 @@ public class UserController {
         userService.deleteUser(id);
         return true;
     }
-
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    @DeleteMapping("/{id}")
-//    public Object deleteUser(@PathVariable String id) {
-//        try {
-//            userService.deleteUser(id);
-//            List<User> users = userService.getUsers();
-//            return ResponseEntity.noContent();
-//        } catch (NotFoundException e) {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
 }
